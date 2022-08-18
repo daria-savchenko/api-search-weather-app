@@ -19,7 +19,114 @@
     <title>Your Weather App</title>
   </head>
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <div class="content">
+        <div class="row search-metric-wrapper">
+          <div class="col">
+            <form class="search-form">
+              <input type="text" class="input" placeholder="Type city name" />
+              <button type="submit" class="search-btn">Search</button>
+            </form>
+          </div>
+          <div class="col">
+            <a href="#" class="switch-metric">°F</a>
+          </div>
+        </div>
+
+        <div class="row main">
+          <div class="col main-info">
+            <h1 class="city">New York</h1>
+            <p class="day-time">
+              <span class="main-day">Mo</span>,
+              <span class="main-time">09:45</span>
+              <span class="main-temp"
+                >13°<span class="metric-name">C</span>
+              </span>
+            </p>
+            <div class="etc-info">
+              <span class="etc">
+                Humidity:
+                <span class="etc-number">30%</span>
+              </span>
+              <span class="etc">
+                Wind:
+                <span class="etc-number">3km/h</span>
+              </span>
+            </div>
+          </div>
+          <div class="col main-pic">
+            <img
+              src="img/rainy-main.png"
+              alt="Weather representing picture, e.g. sunny, clouds etc."
+            />
+          </div>
+        </div>
+
+        <div class="row forecast">
+          <div class="col">
+            <p class="forecast-day for-day-1">Tu</p>
+            <img
+              src="img/sunny-forecast.png"
+              alt="Weather representing picture, e.g. sunny, clouds etc."
+              class="forecast-pic"
+            />
+            <p class="forecast-temp">25°</p>
+          </div>
+          <div class="col">
+            <p class="forecast-day for-day-2">Wd</p>
+            <img
+              src="img/sunny-forecast.png"
+              alt="Weather representing picture, e.g. sunny, clouds etc."
+              class="forecast-pic"
+            />
+            <p class="forecast-temp">25°</p>
+          </div>
+          <div class="col">
+            <p class="forecast-day for-day-3">Th</p>
+            <img
+              src="img/sunny-forecast.png"
+              alt="Weather representing picture, e.g. sunny, clouds etc."
+              class="forecast-pic"
+            />
+            <p class="forecast-temp">25°</p>
+          </div>
+          <div class="col">
+            <p class="forecast-day for-day-4">Fr</p>
+            <img
+              src="img/rainy-forecast.png"
+              alt="Weather representing picture, e.g. sunny, clouds etc."
+              class="forecast-pic"
+            />
+            <p class="forecast-temp">25°</p>
+          </div>
+          <div class="col">
+            <p class="forecast-day for-day-5">Sat</p>
+            <img
+              src="img/cloudy-forecast.png"
+              alt="Weather representing picture, e.g. sunny, clouds etc."
+              class="forecast-pic"
+            />
+            <p class="forecast-temp">25°</p>
+          </div>
+          <div class="col">
+            <p class="forecast-day for-day-6">Sun</p>
+            <img
+              src="img/sunny-forecast.png"
+              alt="Weather representing picture, e.g. sunny, clouds etc."
+              class="forecast-pic"
+            />
+            <p class="forecast-temp">25°</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      A glimpse into
+      <a href="" class="design">design process</a>. GitHub
+      <a href="" class="open-source">open source code</a>. ©
+      <a href="" class="name">Daria Savchenko</a>
+    </div>
     <script src="src/script.js"></script>
   </body>
 </html>
