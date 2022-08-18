@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Saira+Extra+Condensed:wght@600&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -20,113 +26,123 @@
   </head>
   <body>
     <div class="container">
-      <div class="content">
-        <div class="row search-metric-wrapper">
-          <div class="col">
+      <div class="row weather-card">
+        <div class="col spine"></div>
+        <div class="col content">
+          <div class="search-metric-wrapper">
             <form class="search-form">
               <input type="text" class="input" placeholder="Type city name" />
               <button type="submit" class="search-btn">Search</button>
             </form>
-          </div>
-          <div class="col">
+
             <a href="#" class="switch-metric">°F</a>
           </div>
-        </div>
 
-        <div class="row main">
-          <div class="col main-info">
-            <h1 class="city">New York</h1>
-            <p class="day-time">
-              <span class="main-day">Mo</span>,
-              <span class="main-time">09:45</span>
-              <span class="main-temp"
-                >13°<span class="metric-name">C</span>
-              </span>
-            </p>
-            <div class="etc-info">
-              <span class="etc">
-                Humidity:
-                <span class="etc-number">30%</span>
-              </span>
-              <span class="etc">
-                Wind:
-                <span class="etc-number">3km/h</span>
-              </span>
+          <div class="main">
+            <div class="main-info">
+              <h1 class="city">New York</h1>
+              <p class="day-time">
+                <span class="main-day">Mo</span>,
+                <span class="main-time">09:45</span>
+                <span class="main-temp"
+                  >13°<span class="metric-name">C</span>
+                </span>
+              </p>
+              <div class="etc-info">
+                <span class="etc">
+                  Humidity:
+                  <span class="etc-number">30%</span>
+                </span>
+                <span class="etc">
+                  Wind:
+                  <span class="etc-number">3km/h</span>
+                </span>
+              </div>
             </div>
-          </div>
-          <div class="col main-pic">
             <img
-              src="img/rainy-main.png"
+              src="img/cloudy-main.png"
               alt="Weather representing picture, e.g. sunny, clouds etc."
+              class="main-pic"
             />
           </div>
-        </div>
 
-        <div class="row forecast">
-          <div class="col">
-            <p class="forecast-day for-day-1">Tu</p>
-            <img
-              src="img/sunny-forecast.png"
-              alt="Weather representing picture, e.g. sunny, clouds etc."
-              class="forecast-pic"
-            />
-            <p class="forecast-temp">25°</p>
-          </div>
-          <div class="col">
-            <p class="forecast-day for-day-2">Wd</p>
-            <img
-              src="img/sunny-forecast.png"
-              alt="Weather representing picture, e.g. sunny, clouds etc."
-              class="forecast-pic"
-            />
-            <p class="forecast-temp">25°</p>
-          </div>
-          <div class="col">
-            <p class="forecast-day for-day-3">Th</p>
-            <img
-              src="img/sunny-forecast.png"
-              alt="Weather representing picture, e.g. sunny, clouds etc."
-              class="forecast-pic"
-            />
-            <p class="forecast-temp">25°</p>
-          </div>
-          <div class="col">
-            <p class="forecast-day for-day-4">Fr</p>
-            <img
-              src="img/rainy-forecast.png"
-              alt="Weather representing picture, e.g. sunny, clouds etc."
-              class="forecast-pic"
-            />
-            <p class="forecast-temp">25°</p>
-          </div>
-          <div class="col">
-            <p class="forecast-day for-day-5">Sat</p>
-            <img
-              src="img/cloudy-forecast.png"
-              alt="Weather representing picture, e.g. sunny, clouds etc."
-              class="forecast-pic"
-            />
-            <p class="forecast-temp">25°</p>
-          </div>
-          <div class="col">
-            <p class="forecast-day for-day-6">Sun</p>
-            <img
-              src="img/sunny-forecast.png"
-              alt="Weather representing picture, e.g. sunny, clouds etc."
-              class="forecast-pic"
-            />
-            <p class="forecast-temp">25°</p>
+          <div class="row forecast">
+            <div class="col forecast-card">
+              <p class="forecast-day for-day-1">Tu</p>
+              <img
+                src="img/sunny-forecast.png"
+                alt="Weather representing picture, e.g. sunny, clouds etc."
+                class="forecast-pic"
+              />
+              <p class="forecast-temp">25°</p>
+            </div>
+            <div class="col forecast-card">
+              <p class="forecast-day for-day-2">Wd</p>
+              <img
+                src="img/sunny-forecast.png"
+                alt="Weather representing picture, e.g. sunny, clouds etc."
+                class="forecast-pic"
+              />
+              <p class="forecast-temp">25°</p>
+            </div>
+            <div class="col forecast-card">
+              <p class="forecast-day for-day-3">Th</p>
+              <img
+                src="img/sunny-forecast.png"
+                alt="Weather representing picture, e.g. sunny, clouds etc."
+                class="forecast-pic"
+              />
+              <p class="forecast-temp">25°</p>
+            </div>
+            <div class="col forecast-card">
+              <p class="forecast-day for-day-4">Fr</p>
+              <img
+                src="img/rainy-forecast.png"
+                alt="Weather representing picture, e.g. sunny, clouds etc."
+                class="forecast-pic"
+              />
+              <p class="forecast-temp">25°</p>
+            </div>
+            <div class="col forecast-card">
+              <p class="forecast-day for-day-5">Sat</p>
+              <img
+                src="img/cloudy-forecast.png"
+                alt="Weather representing picture, e.g. sunny, clouds etc."
+                class="forecast-pic"
+              />
+              <p class="forecast-temp">25°</p>
+            </div>
+            <div class="col forecast-card">
+              <p class="forecast-day for-day-6">Sun</p>
+              <img
+                src="img/sunny-forecast.png"
+                alt="Weather representing picture, e.g. sunny, clouds etc."
+                class="forecast-pic"
+              />
+              <p class="forecast-temp">25°</p>
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="footer">
+        A glimpse into
+        <a href="" class="design" target="_blank">design process</a>. GitHub
+        <a
+          href="https://github.com/Aprilweb/your-weather-app"
+          class="open-source"
+          target="_blank"
+          >open source code</a
+        >. ©
+        <a
+          href="https://www.linkedin.com/in/daria-savchenko-637133230/"
+          class="name"
+          target="_blank"
+          >Daria Savchenko</a
+        >
+      </div>
     </div>
 
-    <div class="footer">
-      A glimpse into
-      <a href="" class="design">design process</a>. GitHub
-      <a href="" class="open-source">open source code</a>. ©
-      <a href="" class="name">Daria Savchenko</a>
-    </div>
     <script src="src/script.js"></script>
   </body>
 </html>
