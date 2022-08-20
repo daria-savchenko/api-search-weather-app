@@ -57,18 +57,29 @@ function showRelInfo(response) {
     "Mist",
   ];
 
-  if (sunny.includes(response.data.weather[0].main)) {
+  if (sunny.includes(weatherDesc)) {
     mainPic.setAttribute("src", "img/sunny-main.png");
-  } else if (snowy.includes(response.data.weather[0].main)) {
+  } else if (snowy.includes(weatherDesc)) {
     mainPic.setAttribute("src", "img/snowy-main.png");
-  } else if (rainy.includes(response.data.weather[0].main)) {
+  } else if (rainy.includes(weatherDesc)) {
     mainPic.setAttribute("src", "img/rainy-main.png");
-  } else if (clouds.includes(response.data.weather[0].main)) {
+  } else if (clouds.includes(weatherDesc)) {
     mainPic.setAttribute("src", "img/cloudy-main.png");
   }
+
+  let city = document.querySelector("#city");
+  city.innerHTML = response.data.name;
 }
 
-let apiKey = "7ee6d1b146fe97f48a0778bfde65d48b";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=New York&appid=${apiKey}&units=metric`;
+function showthroughAxios(event) {
+  let inputValue = document.querySelector("#search-input").value;
+  console.log(inputValue);
 
-axios.get(apiUrl).then(showRelInfo);
+  let apiKey = "7ee6d1b146fe97f48a0778bfde65d48b";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(showRelInfo);
+}
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", showthroughAxios);

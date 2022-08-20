@@ -31,8 +31,14 @@
         <div class="col spine"></div>
         <div class="col content">
           <div class="search-metric-wrapper">
-            <form class="search-form">
-              <input type="text" class="input" placeholder="Type city name" />
+            <form class="search-form" id="search-form">
+              <input
+                type="text"
+                class="input"
+                id="search-input"
+                placeholder="Type city name"
+                autocomplete="off"
+              />
               <button type="submit" class="search-btn">Search</button>
             </form>
 
@@ -41,7 +47,7 @@
 
           <div class="main">
             <div class="main-info">
-              <h1 class="city">New York</h1>
+              <h1 class="city" id="city">New York</h1>
               <p class="day-time">
                 <span class="main-day-time" id="main-time"></span>
                 <span class="main-temp" id="main-temp">13</span
