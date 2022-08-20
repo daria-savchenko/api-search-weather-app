@@ -72,6 +72,7 @@ function showRelInfo(response) {
 }
 
 function showthroughAxios(event) {
+  event.preventDefault();
   let inputValue = document.querySelector("#search-input").value;
   console.log(inputValue);
 
