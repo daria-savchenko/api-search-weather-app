@@ -74,7 +74,6 @@ function showRelInfo(response) {
 function showthroughAxios(event) {
   event.preventDefault();
   let inputValue = document.querySelector("#search-input").value;
-  console.log(inputValue);
 
   let apiKey = "7ee6d1b146fe97f48a0778bfde65d48b";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${apiKey}&units=metric`;
