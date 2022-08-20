@@ -33,6 +33,39 @@ function showRelInfo(response) {
   let mainTime = document.querySelector("#main-time");
   let timezone = response.data.timezone;
   mainTime.innerHTML = formatDate(timezone);
+
+  let mainPic = document.querySelector("#main-pic");
+  let descr = response.data.weather[0].description;
+  mainPic.setAttribute("alt", `${descr}`);
+
+  let weatherDesc = response.data.weather[0].main;
+
+  let sunny = ["Clear"];
+  let snowy = ["Snow"];
+  let rainy = ["Rain", "Drizzle", "Thunderstorm"];
+  let clouds = [
+    "Clouds",
+    "Tornado",
+    "Squall",
+    "Ash",
+    "Dust",
+    "Sand",
+    "Fog",
+    "Dust",
+    "Haze",
+    "Smoke",
+    "Mist",
+  ];
+
+  if (sunny.includes(response.data.weather[0].main)) {
+    mainPic.setAttribute("src", "img/sunny-main.png");
+  } else if (snowy.includes(response.data.weather[0].main)) {
+    mainPic.setAttribute("src", "img/snowy-main.png");
+  } else if (rainy.includes(response.data.weather[0].main)) {
+    mainPic.setAttribute("src", "img/rainy-main.png");
+  } else if (clouds.includes(response.data.weather[0].main)) {
+    mainPic.setAttribute("src", "img/cloudy-main.png");
+  }
 }
 
 let apiKey = "7ee6d1b146fe97f48a0778bfde65d48b";
