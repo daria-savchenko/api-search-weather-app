@@ -91,6 +91,20 @@ body {
   color: #565656;
 }
 
+/* °c to °F */
+
+.hidden-metric {
+  display: none;
+}
+
+.cels-color {
+  color: #ec8b8b;
+}
+
+.fahr-color {
+  color: #acbdd7;
+}
+
 /* main */
 
 .main {
@@ -125,7 +139,6 @@ body {
 .metric-name {
   font-size: 57px;
   line-height: 1;
-  color: #ec8b8b;
 }
 
 .etc-info {
@@ -174,7 +187,6 @@ body {
 .forecast-temp {
   font-size: 27px;
   line-height: 38px;
-  color: #ec8b8b;
   margin-bottom: 0;
 }
 
