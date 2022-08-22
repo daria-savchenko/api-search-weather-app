@@ -121,6 +121,7 @@ body {
 .city {
   font-family: "Saira Extra Condensed", sans-serif;
   font-weight: 700;
+  max-width: 250px;
   font-size: 65px;
   line-height: 1;
   letter-spacing: -3px;

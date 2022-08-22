@@ -42,6 +42,9 @@ function showRelInfo(response) {
 
   let weatherDesc = response.data.weather[0].main;
 
+  let city = document.querySelector("#city");
+  city.innerHTML = response.data.name;
+
   let sunny = ["Clear"];
   let snowy = ["Snow"];
   let rainy = ["Rain", "Drizzle", "Thunderstorm"];
@@ -91,8 +94,6 @@ function showRelInfo(response) {
 function showthroughAxios(event) {
   event.preventDefault();
   let inputValue = document.querySelector("#search-input").value;
-  let city = document.querySelector("#city");
-  city.innerHTML = inputValue;
 
   let apiKey = "7ee6d1b146fe97f48a0778bfde65d48b";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${apiKey}&units=metric`;
