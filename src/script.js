@@ -91,6 +91,20 @@ function showRelInfo(response) {
   switchToCels.classList.add("hidden-metric");
 }
 
+// current info on default city upon page loading
+
+function showDefaultInfo(defCity) {
+  let apiKey = "7ee6d1b146fe97f48a0778bfde65d48b";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${defCity}&appid=${apiKey}&units=metric`;
+
+  console.log(apiUrl);
+  axios.get(apiUrl).then(showRelInfo);
+}
+
+showDefaultInfo("New York");
+
+//
+
 function showthroughAxios(event) {
   event.preventDefault();
   let inputValue = document.querySelector("#search-input").value;
