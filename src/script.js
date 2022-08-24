@@ -20,6 +20,41 @@ function formatDate(timez) {
   return `${weekDay}, ${hours}:${minutes}`;
 }
 
+// forecast 2
+
+function showForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    <div class="col forecast-card">
+      <p class="forecast-day">${day}</p>
+        <img
+          src="img/sunny-forecast.png"
+          alt="Weather representing picture, e.g. sunny, clouds etc."
+          class="forecast-pic"
+        />
+      <p class="forecast-temp cels-color" id="forecast-temp">_°</p>
+    </div>`;
+  });
+  forecastElement.innerHTML = forecastHTML + `</div>`;
+}
+
+function getForecast(coordinates) {
+  let apiKey = "7ee6d1b146fe97f48a0778bfde65d48b";
+  let lat = coordinates.lat;
+  let lon = coordinates.lon;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+
+  axios.get(apiUrl).then(showForecast);
+}
+
+//
+
 function showRelInfo(response) {
   let mainTemp = document.querySelector("#main-temp");
   mainTemp.innerHTML = Math.round(response.data.main.temp);
@@ -72,9 +107,9 @@ function showRelInfo(response) {
     mainPic.setAttribute("src", "img/cloudy-main.png");
   }
 
-  // forecast part 2
+  // forecast part 1
 
-  showForecast();
+  getForecast(response.data.coord);
 
   // °F to °C part 2
 
@@ -100,7 +135,6 @@ function showRelInfo(response) {
 function showDefaultInfo(defCity) {
   let apiKey = "7ee6d1b146fe97f48a0778bfde65d48b";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${defCity}&appid=${apiKey}&units=metric`;
-
   axios.get(apiUrl).then(showRelInfo);
 }
 
@@ -165,26 +199,3 @@ function showInCels(event) {
 
 let switchToCels = document.querySelector("#switch-to-cels");
 switchToCels.addEventListener("click", showInCels);
-
-// forecast
-
-function showForecast() {
-  let forecastElement = document.querySelector("#forecast");
-  let forecastHTML = `<div class="row">`;
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-    <div class="col forecast-card">
-      <p class="forecast-day">${day}</p>
-        <img
-          src="img/sunny-forecast.png"
-          alt="Weather representing picture, e.g. sunny, clouds etc."
-          class="forecast-pic"
-        />
-      <p class="forecast-temp cels-color" id="forecast-temp">_°</p>
-    </div>`;
-  });
-  forecastElement.innerHTML = forecastHTML + `</div>`;
-}
