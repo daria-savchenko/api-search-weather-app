@@ -17,28 +17,97 @@ function formatDate(timez) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
+
   return `${weekDay}, ${hours}:${minutes}`;
+}
+
+//weather pic
+
+function showPicAccToWeather(weather) {
+  let sunny = ["Clear"];
+  let snowy = ["Snow"];
+  let rainy = ["Rain", "Drizzle", "Thunderstorm"];
+  let clouds = [
+    "Clouds",
+    "Tornado",
+    "Squall",
+    "Ash",
+    "Dust",
+    "Sand",
+    "Fog",
+    "Dust",
+    "Haze",
+    "Smoke",
+    "Mist",
+  ];
+
+  if (sunny.includes(weather)) {
+    return "sunny";
+  } else if (snowy.includes(weather)) {
+    return "snowy";
+  } else if (rainy.includes(weather)) {
+    return "rainy";
+  } else if (clouds.includes(weather)) {
+    return "cloudy";
+  }
 }
 
 // forecast 2
 
-function showForecast() {
+function forecastWeekDay(day, offset) {
+  let now = new Date();
+  localTime = now.getTime();
+  localOffset = now.getTimezoneOffset() * 60000;
+  utc = localTime + localOffset;
+  let relCity = utc + 1000 * offset;
+  let nd = new Date(relCity);
+  let weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let getToday = nd.getDay();
+  let today = weekDays[getToday];
+
+  if (today == "Sun") {
+    forecastDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  } else if (today == "Mon") {
+    forecastDays = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon"];
+  } else if (today == "Tue") {
+    forecastDays = ["Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
+  } else if (today == "Wed") {
+    forecastDays = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue", "Wed"];
+  } else if (today == "Thu") {
+    forecastDays = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
+  } else if (today == "Fri") {
+    forecastDays = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
+  } else if (today == "Sat") {
+    forecastDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  }
+
+  return forecastDays[day];
+}
+
+function showForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  let days = response.data.daily;
+  days.forEach(function (forecastDay, index) {
+    let weatherForPic = forecastDay.weather[0].main;
+    let offset = response.data.timezone_offset;
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
     <div class="col forecast-card">
-      <p class="forecast-day">${day}</p>
+      <p class="forecast-day">${forecastWeekDay(index, offset)}</p>
+        
         <img
-          src="img/sunny-forecast.png"
-          alt="Weather representing picture, e.g. sunny, clouds etc."
+          src="img/${showPicAccToWeather(weatherForPic)}-forecast.png"
+          alt="${weatherForPic}"
           class="forecast-pic"
         />
-      <p class="forecast-temp cels-color" id="forecast-temp">_°</p>
+      <p class="forecast-temp cels-color" id="forecast-temp">${Math.round(
+        forecastDay.temp.day
+      )}°</p>
     </div>`;
+    }
   });
   forecastElement.innerHTML = forecastHTML + `</div>`;
 }
@@ -71,41 +140,23 @@ function showRelInfo(response) {
   let timezone = response.data.timezone;
   mainTime.innerHTML = formatDate(timezone);
 
-  let mainPic = document.querySelector("#main-pic");
+  // mainPic
+  let mainPic = document.querySelector("#main-pic-container");
   let descr = response.data.weather[0].description;
-  mainPic.setAttribute("alt", `${descr}`);
-
   let weatherDesc = response.data.weather[0].main;
+
+  let mainPicHTML = `<img src="img/${showPicAccToWeather(
+    weatherDesc
+  )}-main.png" 
+  alt="${descr}" 
+  class="main-pic"/>`;
+
+  mainPic.innerHTML = mainPicHTML;
+
+  //
 
   let city = document.querySelector("#city");
   city.innerHTML = response.data.name;
-
-  let sunny = ["Clear"];
-  let snowy = ["Snow"];
-  let rainy = ["Rain", "Drizzle", "Thunderstorm"];
-  let clouds = [
-    "Clouds",
-    "Tornado",
-    "Squall",
-    "Ash",
-    "Dust",
-    "Sand",
-    "Fog",
-    "Dust",
-    "Haze",
-    "Smoke",
-    "Mist",
-  ];
-
-  if (sunny.includes(weatherDesc)) {
-    mainPic.setAttribute("src", "img/sunny-main.png");
-  } else if (snowy.includes(weatherDesc)) {
-    mainPic.setAttribute("src", "img/snowy-main.png");
-  } else if (rainy.includes(weatherDesc)) {
-    mainPic.setAttribute("src", "img/rainy-main.png");
-  } else if (clouds.includes(weatherDesc)) {
-    mainPic.setAttribute("src", "img/cloudy-main.png");
-  }
 
   // forecast part 1
 
