@@ -91,6 +91,7 @@ function showForecast(response) {
   days.forEach(function (forecastDay, index) {
     let weatherForPic = forecastDay.weather[0].main;
     let offset = response.data.timezone_offset;
+    let forecastTemp = forecastDay.temp.day;
     if (index < 6) {
       forecastHTML =
         forecastHTML +
@@ -104,7 +105,7 @@ function showForecast(response) {
           class="forecast-pic"
         />
       <p class="forecast-temp cels-color" id="forecast-temp">${Math.round(
-        forecastDay.temp.day
+        forecastTemp
       )}°</p>
     </div>`;
     }
@@ -117,7 +118,6 @@ function getForecast(coordinates) {
   let lat = coordinates.lat;
   let lon = coordinates.lon;
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-  console.log(apiUrl);
 
   axios.get(apiUrl).then(showForecast);
 }
@@ -161,24 +161,6 @@ function showRelInfo(response) {
   // forecast part 1
 
   getForecast(response.data.coord);
-
-  // °F to °C part 2
-
-  let switchToFahr = document.querySelector("#switch-to-fahr");
-  switchToFahr.classList.remove("hidden-metric");
-
-  let cels = document.querySelector("#main-temp");
-  cels.innerHTML = celsTemp;
-  cels.classList.remove("fahr-color");
-  cels.classList.add("cels-color");
-
-  let metricName = document.querySelector("#metric-name");
-  metricName.innerHTML = "°C";
-  metricName.classList.remove("fahr-color");
-  metricName.classList.add("cels-color");
-
-  let switchToCels = document.querySelector("#switch-to-cels");
-  switchToCels.classList.add("hidden-metric");
 }
 
 // current info on default city upon page loading
@@ -205,48 +187,3 @@ function showthroughAxios(event) {
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", showthroughAxios);
-
-// °F to °C part 1
-function showInFahr(event) {
-  event.preventDefault();
-  let fahr = document.querySelector("#main-temp");
-  fahr.innerHTML = Math.round((celsTemp * 9) / 5 + 32);
-  fahr.classList.remove("cels-color");
-  fahr.classList.add("fahr-color");
-
-  let metricName = document.querySelector("#metric-name");
-  metricName.innerHTML = "°F";
-  metricName.classList.remove("cels-color");
-  metricName.classList.add("fahr-color");
-
-  let switchToCels = document.querySelector("#switch-to-cels");
-  switchToCels.classList.remove("hidden-metric");
-  let switchToFahr = document.querySelector("#switch-to-fahr");
-  switchToFahr.classList.add("hidden-metric");
-}
-
-celsTemp = null;
-
-let switchToFahr = document.querySelector("#switch-to-fahr");
-switchToFahr.addEventListener("click", showInFahr);
-
-function showInCels(event) {
-  event.preventDefault();
-  let cels = document.querySelector("#main-temp");
-  cels.innerHTML = celsTemp;
-  cels.classList.remove("fahr-color");
-  cels.classList.add("cels-color");
-
-  let metricName = document.querySelector("#metric-name");
-  metricName.innerHTML = "°C";
-  metricName.classList.remove("fahr-color");
-  metricName.classList.add("cels-color");
-
-  let switchToFahr = document.querySelector("#switch-to-fahr");
-  switchToFahr.classList.remove("hidden-metric");
-  let switchToCels = document.querySelector("#switch-to-cels");
-  switchToCels.classList.add("hidden-metric");
-}
-
-let switchToCels = document.querySelector("#switch-to-cels");
-switchToCels.addEventListener("click", showInCels);
